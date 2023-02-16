@@ -57,9 +57,9 @@ public class JuegoPrincipal {
 
     public void cambiarTurno() {
         if (turnoActual) {
-            turnoActual = !turnoActual;
+            turnoActual = false;
         } else {
-            turnoActual = !turnoActual;
+            turnoActual = true;
         }
     }
 
