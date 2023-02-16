@@ -33,7 +33,6 @@ public class capaDePresentacion {
                     int decisionIncio,decisionComienzo,numeroDeCelda;
                     Character e;
                     char avatar;
-                    boolean mainTicTacToe = true;
                     //cambiar orden ////////////////////////////////////////////////////////////////////////
                     do {
                         System.out.println("Desea cambiar el orden actual?(si--no)\n" + "Jugador1:" + tricky.getJugador1().getNombre() + "\nJugador2:" + tricky.getJugador2().getNombre() + "\n");
@@ -60,7 +59,7 @@ public class capaDePresentacion {
                         tricky.definirSimbolosPorDefecto();
                     }
 
-                    System.out.println("Jugador1,como iniciamos?\n1.Aleatorio\n2.Manual");
+                    System.out.println("Como iniciamos?\n1.Aleatorio\n2.Manual");
                     decisionIncio = Integer.parseInt(input.readLine());
                     //decidir quien tiene el primer turno ///////////////////////////////////////////////////////////////////////
                     switch (decisionIncio) {
@@ -69,7 +68,7 @@ public class capaDePresentacion {
                             break;
                         }
                         case 2: {
-                            System.out.println("Quien comienza?\n1.Jugador1\n2Jugador2");
+                            System.out.println("Quien comienza?\n1.Jugador1\n2.Jugador2");
                             decisionComienzo = Integer.parseInt(input.readLine());
                             tricky.definirIncioManual(decisionComienzo);
                             break;
@@ -77,8 +76,6 @@ public class capaDePresentacion {
                     }
 
                     //ejecucion del juego principal///////////////////////////////////////////////////////////////////////
-                    while(mainTicTacToe) {
-                        tricky.valoresPorDefecto();
                         while (tricky.isJuegoEnCurso()) {
                             if (tricky.isTurnoActua()) {
                                 System.out.println(tricky.getTablero().dibujarTablero());
@@ -99,14 +96,12 @@ public class capaDePresentacion {
                                 tricky.reiniciarTablero();
                             } else if (tricky.validarGanador()) {
                                 tricky.setJuegoEnCurso(false);
-                                mainTicTacToe = false;
                             } else if (tricky.validarEmpate()) {
                                 tricky.setJuegoEnCurso(false);
-                                mainTicTacToe = false;
                             }
                             tricky.cambiarTurno();
                         }
-                    }
+
                     if(tricky.validarGanador()) {
                         System.out.println((tricky.getTablero().dibujarTablero()));
                         System.out.println("Fin del juego\nGanador -> " + tricky.getGanador().getSimbolo() + " " + tricky.getGanador().getNombre());
@@ -115,6 +110,7 @@ public class capaDePresentacion {
                        System.out.println((tricky.getTablero().dibujarTablero()));
                         System.out.println("Empate");
                     }
+                    tricky.valoresPorDefecto();
                     break;
                 }
                 case 2: {

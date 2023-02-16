@@ -67,6 +67,9 @@ public class JuegoPrincipal {
     }
     public void valoresPorDefecto(){
         juegoEnCurso = true;
+        jugador1 = null;
+        jugador2 = null;
+        maquina = null;
         tablero.llenarCeldas();
         simbolosDisponibles.clear();
         simbolosDisponibles.add('@');
