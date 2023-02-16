@@ -38,16 +38,17 @@ public class JuegoPrincipal {
     }
 
     public void cambiarOrdenDeJugadores(int caso) {
-        if(caso == 1) {
+        if (caso == 1) {
             Jugador aux = jugador1;
             jugador1 = jugador2;
             jugador2 = aux;
-        }else if(caso == 2){
+        } else if (caso == 2) {
             Jugador aux = jugador1;
             jugador1 = maquina;
             jugador2 = aux;
         }
     }
+
 
     public void definirSimbolosPorDefecto() {
         jugador1.setSimbolo('X');

@@ -33,7 +33,7 @@ public class capaDePresentacion {
                     int decisionIncio,decisionComienzo,numeroDeCelda;
                     Character e;
                     char avatar;
-                    //cambiar orden ////////////////////////////////////////////////////////////////////////
+                    //cambiar orden /////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     do {
                         System.out.println("Desea cambiar el orden actual?(si--no)\n" + "Jugador1:" + tricky.getJugador1().getNombre() + "\nJugador2:" + tricky.getJugador2().getNombre() + "\n");
                         decisionCambioOrden = input.readLine();
@@ -119,7 +119,7 @@ public class capaDePresentacion {
                     Jugador humano = new Jugador("jugador");
                     Cpu maquinaNueva = new Cpu("Cpu", 'O');
                     tricky.setJugador1(humano);
-                    tricky.setMaquina(maquinaNueva);
+                    tricky.setJugador2(maquinaNueva);
                     String decisionCambioOrden;
                     String decisionCambioSimbolos;
                     char avatar;
@@ -131,7 +131,6 @@ public class capaDePresentacion {
                             tricky.cambiarOrdenDeJugadores(2);
                         }
                     } while(decisionCambioOrden.toLowerCase().equals("si"));
-
                     System.out.println("Estos son lo simbolos predeterminados\njugador1: X\nJugador2: O\nDesea cambiarlos?(si--no)");
                     decisionCambioSimbolos = input.readLine();
                     if(decisionCambioSimbolos.toLowerCase().equals("si")){

@@ -14,9 +14,12 @@ public class Cpu extends Jugador{
     public int tomarDecisionDeCelda(Tablero tableroActual){
         return 1;
     }
-    public void cambiarDeSimbolo(List<Character> disponibles){
+
+    public Character cambiarDeSimbolo(List<Character> disponibles){
         int seleccionarUnAvatar = (int) (Math.random()*(disponibles.size()-1) +1);
-        simbolo = disponibles.remove(seleccionarUnAvatar);
+        simbolo = disponibles.get(seleccionarUnAvatar);
+        Character e = simbolo;
+        return e;
 
     }
     public boolean decidirCambioDeSimbolo(){
