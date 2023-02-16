@@ -82,8 +82,8 @@ public class JuegoPrincipal {
 
     }
     public void definirInicioAleatorio() {
-        int randomBoolean = (int) (Math.random() * (2 - 1 + 1) + 1);
-        if (randomBoolean == 1) {
+        int randomBooleano = (int) (Math.random() * (2 - 1 + 1) + 1);
+        if (randomBooleano == 1) {
             turnoActual = true;
         } else {
             turnoActual = false;
