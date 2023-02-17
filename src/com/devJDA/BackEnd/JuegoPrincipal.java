@@ -196,10 +196,9 @@ public class JuegoPrincipal {
         return false;
     }
 
-    private boolean verificarSimboloDisponible(char c){
+    public boolean verificarSimboloDisponible(char c){
         return simbolosDisponibles.contains(c);
     }
-
 
     public Jugador getJugador1() {
         return jugador1;
