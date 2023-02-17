@@ -8,7 +8,6 @@ import com.devJDA.BackEnd.Tablero;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Time;
 
 public class capaDePresentacion {
     public static void main(String[] args) throws IOException {
@@ -85,14 +84,14 @@ public class capaDePresentacion {
                     //ejecucion del juego principal///////////////////////////////////////////////////////////////////////
                         while (tricky.isJuegoEnCurso()) {
                             if (tricky.isTurnoActua()) {
-                                System.out.println(tricky.getTablero().dibujarTablero());
+                                System.out.println(tricky.getTablero().dibujar());
                                 do {
                                     System.out.println("Jugador1 ingrese numero de celda disponible(Codigo de reinicio= 777)\n");
                                     numeroDeCelda = Integer.parseInt(input.readLine());
                                 } while (!tricky.marcarTablero(numeroDeCelda, tricky.getJugador1().getSimbolo()));
 
                             } else {
-                                System.out.println(tricky.getTablero().dibujarTablero());
+                                System.out.println(tricky.getTablero().dibujar());
                                 do {
                                     System.out.println("Jugador2 ingrese numero de celda disponible(Codigo de reinicio = 777)\n");
                                     numeroDeCelda = Integer.parseInt(input.readLine());
@@ -110,11 +109,11 @@ public class capaDePresentacion {
                         }
 
                     if(tricky.validarGanador()) {
-                        System.out.println((tricky.getTablero().dibujarTablero()));
+                        System.out.println((tricky.getTablero().dibujar()));
                         System.out.println("Fin del juego\nGanador -> " + tricky.getGanador().getSimbolo() + " " + tricky.getGanador().getNombre());
                         tricky.valoresPorDefecto();
                     }else if(tricky.validarEmpate()){
-                       System.out.println((tricky.getTablero().dibujarTablero()));
+                       System.out.println((tricky.getTablero().dibujar()));
                         System.out.println("Empate");
                     }
                     tricky.valoresPorDefecto();
@@ -188,7 +187,7 @@ public class capaDePresentacion {
                                 numeroDeCelda = tricky.getJugador1().tomarDecisionDeCelda(tricky.getTablero());
                                 tricky.marcarTablero(numeroDeCelda,tricky.getJugador1().getSimbolo());
                             }else {
-                                System.out.println(tricky.getTablero().dibujarTablero());
+                                System.out.println(tricky.getTablero().dibujar());
                                 do {
                                     System.out.println("Jugador1 ingrese numero de celda disponible(Codigo de reinicio= 777)\n");
                                     numeroDeCelda = Integer.parseInt(input.readLine());
@@ -200,7 +199,7 @@ public class capaDePresentacion {
                                 numeroDeCelda = tricky.getJugador2().tomarDecisionDeCelda(tricky.getTablero());
                                 tricky.marcarTablero(numeroDeCelda,tricky.getJugador2().getSimbolo());
                             }else {
-                                System.out.println(tricky.getTablero().dibujarTablero());
+                                System.out.println(tricky.getTablero().dibujar());
                                 do {
                                     System.out.println("Jugador2 ingrese numero de celda disponible(Codigo de reinicio= 777)\n");
                                     numeroDeCelda = Integer.parseInt(input.readLine());
@@ -218,11 +217,11 @@ public class capaDePresentacion {
                         tricky.cambiarTurno();
                     }
                     if(tricky.validarGanador()) {
-                        System.out.println((tricky.getTablero().dibujarTablero()));
+                        System.out.println((tricky.getTablero().dibujar()));
                         System.out.println("Fin del juego\nGanador -> " + tricky.getGanador().getSimbolo() + " " + tricky.getGanador().getNombre());
                         tricky.valoresPorDefecto();
                     }else if(tricky.validarEmpate()){
-                        System.out.println((tricky.getTablero().dibujarTablero()));
+                        System.out.println((tricky.getTablero().dibujar()));
                         System.out.println("Empate");
                     }
                     tricky.valoresPorDefecto();

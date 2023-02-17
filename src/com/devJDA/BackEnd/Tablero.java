@@ -9,7 +9,7 @@ public class Tablero {
         llenarCeldas();
     }
 
-    public String dibujarTablero(){
+    public String dibujar(){
         String pantalla = "";
         //pantalla += " ";
         for (int i = 0; i < celdas.length ; i+=3) {
