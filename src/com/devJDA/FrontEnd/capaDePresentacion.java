@@ -49,16 +49,20 @@ public class capaDePresentacion {
                     if(decisionCambioSimbolos.toLowerCase().equals("si")){
                         System.out.println("Jugador1 escoge tu avatar:\n"+ tricky.getSimbolosDisponibles());
                         avatar = input.readLine().toUpperCase().charAt(0);
-                        tricky.getSimbolosDisponibles().remove(e = avatar);
-                        tricky.definirSimbolos(avatar,1);
+                        if(tricky.verificarSimboloDisponible(avatar)){
+                            tricky.getSimbolosDisponibles().remove(e = avatar);
+                            tricky.definirSimbolos(avatar,1);
+                        }
                     }
                     System.out.println("Jugador2 desea cambiar su avatar?\n");
                     decisionCambioSimbolos = input.readLine();
                     if(decisionCambioSimbolos.toLowerCase().equals("si")) {
                         System.out.println("Jugador2 escoge tu avatar:\n" + tricky.getSimbolosDisponibles());
                         avatar = input.readLine().toUpperCase().charAt(0);
-                        tricky.getSimbolosDisponibles().remove(e = avatar);
-                        tricky.definirSimbolos(avatar, 2);
+                        if(tricky.verificarSimboloDisponible(avatar)){
+                            tricky.getSimbolosDisponibles().remove(e = avatar);
+                            tricky.definirSimbolos(avatar,2);
+                        }
                     }
                     System.out.println("Jugador1: "+ tricky.getJugador1().getSimbolo()+"\nJugador2: "+tricky.getJugador2().getSimbolo());
                     System.out.println("Como iniciamos?\n1.Aleatorio\n2.Manual");
@@ -139,13 +143,17 @@ public class capaDePresentacion {
                     if(decisionCambioSimbolos.toLowerCase().equals("si") && tricky.getJugador1().getNombre().toLowerCase().equals("jugador")){//si el jugador1 es humano
                         System.out.println("Jugador1 escoge tu avatar:\n"+ tricky.getSimbolosDisponibles());
                         avatar = input.readLine().toUpperCase().charAt(0);
-                        tricky.getSimbolosDisponibles().remove(e = avatar);
-                        tricky.definirSimbolos(avatar,1);
+                        if(tricky.verificarSimboloDisponible(avatar)){
+                            tricky.getSimbolosDisponibles().remove(e = avatar);
+                            tricky.definirSimbolos(avatar,1);
+                        }
                     }else if(decisionCambioSimbolos.toLowerCase().equals("si")){    //si el jugador2 es humano
                         System.out.println("Jugador2 escoge tu avatar:\n"+ tricky.getSimbolosDisponibles());
                         avatar = input.readLine().toUpperCase().charAt(0);
-                        tricky.getSimbolosDisponibles().remove(e = avatar);
-                        tricky.definirSimbolos(avatar,2);
+                        if(tricky.verificarSimboloDisponible(avatar)){
+                            tricky.getSimbolosDisponibles().remove(e = avatar);
+                            tricky.definirSimbolos(avatar,2);
+                        }
                     } else if (tricky.getJugador1() instanceof Cpu && tricky.getJugador1().tomarDecision()) {//si el jugador1 es maquina
                         e = tricky.getJugador1().cambiarDeSimbolo(tricky.getSimbolosDisponibles());
                         tricky.getSimbolosDisponibles().remove(e);
