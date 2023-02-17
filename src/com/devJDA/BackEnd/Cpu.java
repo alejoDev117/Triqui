@@ -6,9 +6,8 @@ public class Cpu extends Jugador{
     private char simbolo;
 
 
-    public Cpu(String nombre, char simbolo) {
+    public Cpu(String nombre) {
         super(nombre);
-        this.simbolo = simbolo;
     }
 
     public int tomarDecisionDeCelda(Tablero tableroActual){
@@ -22,7 +21,7 @@ public class Cpu extends Jugador{
         return e;
 
     }
-    public boolean decidirCambioDeSimbolo(){
+    public boolean tomarDecision(){
         int randomBoolean = (int) (Math.random() * (2 - 1 + 1) + 1);
         if (randomBoolean == 1) {
            return true;
@@ -30,8 +29,6 @@ public class Cpu extends Jugador{
            return false;
         }
     }
-    public boolean decidirQuienIncia(){
-        return true;
-    }
+
 
 }

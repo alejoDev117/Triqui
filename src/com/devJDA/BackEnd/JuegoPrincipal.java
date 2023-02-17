@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JuegoPrincipal {
-    private Cpu maquina;
     private Jugador jugador1;
     private Jugador jugador2;
     private Tablero tablero;
@@ -37,16 +36,10 @@ public class JuegoPrincipal {
         }
     }
 
-    public void cambiarOrdenDeJugadores(int caso) {
-        if (caso == 1) {
+    public void cambiarOrdenDeJugadores() {
             Jugador aux = jugador1;
             jugador1 = jugador2;
             jugador2 = aux;
-        } else if (caso == 2) {
-            Jugador aux = jugador1;
-            jugador1 = maquina;
-            jugador2 = aux;
-        }
     }
 
 
@@ -70,7 +63,6 @@ public class JuegoPrincipal {
         juegoEnCurso = true;
         jugador1 = null;
         jugador2 = null;
-        maquina = null;
         tablero.llenarCeldas();
         simbolosDisponibles.clear();
         simbolosDisponibles.add('@');
@@ -254,11 +246,4 @@ public class JuegoPrincipal {
         return ganador;
     }
 
-    public Cpu getMaquina() {
-        return maquina;
-    }
-
-    public void setMaquina(Cpu maquina) {
-        this.maquina = maquina;
-    }
 }

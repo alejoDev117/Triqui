@@ -38,7 +38,7 @@ public class capaDePresentacion {
                         System.out.println("Desea cambiar el orden actual?(si--no)\n" + "Jugador1:" + tricky.getJugador1().getNombre() + "\nJugador2:" + tricky.getJugador2().getNombre() + "\n");
                         decisionCambioOrden = input.readLine();
                         if(decisionCambioOrden.toLowerCase().equals("si")){
-                            tricky.cambiarOrdenDeJugadores(1);
+                            tricky.cambiarOrdenDeJugadores();
                         }
                     } while(decisionCambioOrden.toLowerCase().equals("si"));
                     tricky.definirSimbolosPorDefecto();
@@ -117,7 +117,7 @@ public class capaDePresentacion {
                 }
                 case 2: {
                     Jugador humano = new Jugador("jugador");
-                    Cpu maquinaNueva = new Cpu("Cpu", 'O');
+                    Cpu maquinaNueva = new Cpu("Cpu");
                     tricky.setJugador1(humano);
                     tricky.setJugador2(maquinaNueva);
                     String decisionCambioOrden;
@@ -128,20 +128,34 @@ public class capaDePresentacion {
                         System.out.println("Desea cambiar el orden actual?(si--no)\n" + "Jugador1:" + tricky.getJugador1().getNombre() + "\nJugador2:" + tricky.getJugador2().getNombre() + "\n");
                         decisionCambioOrden = input.readLine();
                         if(decisionCambioOrden.toLowerCase().equals("si")){
-                            tricky.cambiarOrdenDeJugadores(2);
+                            tricky.cambiarOrdenDeJugadores();
                         }
                     } while(decisionCambioOrden.toLowerCase().equals("si"));
-                    System.out.println("Estos son lo simbolos predeterminados\njugador1: X\nJugador2: O\nDesea cambiarlos?(si--no)");
+                    tricky.definirSimbolosPorDefecto();
+                    System.out.println("Estos son lo simbolos predeterminados\njugador1:"+ tricky.getJugador1().getSimbolo()+"\nJugador2:"+tricky.getJugador2().getSimbolo()+"\n");
+                    System.out.println("abrir menu de avatars disponibles?\n");
                     decisionCambioSimbolos = input.readLine();
-                    if(decisionCambioSimbolos.toLowerCase().equals("si")){
+                    //toma de decision de cambiar simbolos, segun el caso//////////////////////////////////////////////////////////////////
+                    if(decisionCambioSimbolos.toLowerCase().equals("si") && tricky.getJugador1().getNombre().toLowerCase().equals("jugador")){//si el jugador1 es humano
                         System.out.println("Jugador1 escoge tu avatar:\n"+ tricky.getSimbolosDisponibles());
                         avatar = input.readLine().toUpperCase().charAt(0);
                         tricky.getSimbolosDisponibles().remove(e = avatar);
                         tricky.definirSimbolos(avatar,1);
-                        System.out.println("Jugador1: "+ tricky.getJugador1().getSimbolo()+"\nJugador2: "+tricky.getJugador2().getSimbolo());
-                    }else{
-                        tricky.definirSimbolosPorDefecto();
+                    }else if(decisionCambioSimbolos.toLowerCase().equals("si")){    //si el jugador2 es humano
+                        System.out.println("Jugador2 escoge tu avatar:\n"+ tricky.getSimbolosDisponibles());
+                        avatar = input.readLine().toUpperCase().charAt(0);
+                        tricky.getSimbolosDisponibles().remove(e = avatar);
+                        tricky.definirSimbolos(avatar,2);
+                    } else if (tricky.getJugador1() instanceof Cpu && tricky.getJugador1().tomarDecision()) {//si el jugador1 es maquina
+                        e = tricky.getJugador1().cambiarDeSimbolo(tricky.getSimbolosDisponibles());
+                        tricky.getSimbolosDisponibles().remove(e);
+                        tricky.definirSimbolos(e,1);
+                    } else if(tricky.getJugador2().tomarDecision()){// si el jugador2 es maquina
+                        e = tricky.getJugador2().cambiarDeSimbolo(tricky.getSimbolosDisponibles());
+                        tricky.getSimbolosDisponibles().remove(e);
+                        tricky.definirSimbolos(e,2);
                     }
+                    System.out.println("Jugador1: "+ tricky.getJugador1().getSimbolo()+"\nJugador2: "+tricky.getJugador2().getSimbolo());
                     break;
                 }
 

@@ -15,23 +15,24 @@ public class Jugador {
         return 1;
     }
     public Character cambiarDeSimbolo(List<Character> disponibles){
-        return 'a';
+        return 'O';
     }
-    public boolean decidirCambioDeSimbolo(){
+    public boolean tomarDecision(){
         return true;
     }
-    public boolean decidirQuienIncia(){
-        return true;
-    }
+
     public char getSimbolo() {
+
         return simbolo;
     }
 
     public void setSimbolo(char simbolo) {
+
         this.simbolo = simbolo;
     }
 
     public String getNombre() {
+
         return nombre;
     }
 }
