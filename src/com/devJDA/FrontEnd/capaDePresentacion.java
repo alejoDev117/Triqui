@@ -8,6 +8,7 @@ import com.devJDA.BackEnd.Tablero;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Time;
 
 public class capaDePresentacion {
     public static void main(String[] args) throws IOException {
@@ -112,20 +113,21 @@ public class capaDePresentacion {
                         System.out.println((tricky.getTablero().dibujarTablero()));
                         System.out.println("Fin del juego\nGanador -> " + tricky.getGanador().getSimbolo() + " " + tricky.getGanador().getNombre());
                         tricky.valoresPorDefecto();
-                    }else {
+                    }else if(tricky.validarEmpate()){
                        System.out.println((tricky.getTablero().dibujarTablero()));
                         System.out.println("Empate");
                     }
                     tricky.valoresPorDefecto();
                     break;
                 }
-                case 2: {
+                case 2: {//Jugador vs Cpu//////////////////////////////////////////////////////////////////////
                     Jugador humano = new Jugador("jugador");
                     Cpu maquinaNueva = new Cpu("Cpu");
                     tricky.setJugador1(humano);
                     tricky.setJugador2(maquinaNueva);
                     String decisionCambioOrden;
                     String decisionCambioSimbolos;
+                    int decisionIncio, decisionComienzo, numeroDeCelda;
                     char avatar;
                     Character e;
                     do {
@@ -135,6 +137,7 @@ public class capaDePresentacion {
                             tricky.cambiarOrdenDeJugadores();
                         }
                     } while(decisionCambioOrden.toLowerCase().equals("si"));
+
                     tricky.definirSimbolosPorDefecto();
                     System.out.println("Estos son lo simbolos predeterminados\njugador1:"+ tricky.getJugador1().getSimbolo()+"\nJugador2:"+tricky.getJugador2().getSimbolo()+"\n");
                     System.out.println("abrir menu de avatars disponibles?\n");
@@ -164,7 +167,67 @@ public class capaDePresentacion {
                         tricky.definirSimbolos(e,2);
                     }
                     System.out.println("Jugador1: "+ tricky.getJugador1().getSimbolo()+"\nJugador2: "+tricky.getJugador2().getSimbolo());
+                    System.out.println("Como iniciamos?\n1.Aleatorio\n2.Manual");
+                    decisionIncio = Integer.parseInt(input.readLine());
+
+                    switch (decisionIncio) {
+                        case 1: {
+                            tricky.definirInicioAleatorio();
+                            break;
+                        }
+                        case 2: {
+                            System.out.println("Quien comienza?\n1.Jugador1\n2.Jugador2");
+                            decisionComienzo = Integer.parseInt(input.readLine());
+                            tricky.definirIncioManual(decisionComienzo);
+                            break;
+                        }
+                    }
+                    while (tricky.isJuegoEnCurso()) {
+                        if (tricky.isTurnoActua()) {
+                            if(tricky.getJugador1().getNombre().equals("Cpu")){
+                                numeroDeCelda = tricky.getJugador1().tomarDecisionDeCelda(tricky.getTablero());
+                                tricky.marcarTablero(numeroDeCelda,tricky.getJugador1().getSimbolo());
+                            }else {
+                                System.out.println(tricky.getTablero().dibujarTablero());
+                                do {
+                                    System.out.println("Jugador1 ingrese numero de celda disponible(Codigo de reinicio= 777)\n");
+                                    numeroDeCelda = Integer.parseInt(input.readLine());
+                                } while (!tricky.marcarTablero(numeroDeCelda, tricky.getJugador1().getSimbolo()));
+                            }
+
+                        } else {
+                            if(tricky.getJugador2().getNombre().equals("Cpu")){
+                                numeroDeCelda = tricky.getJugador2().tomarDecisionDeCelda(tricky.getTablero());
+                                tricky.marcarTablero(numeroDeCelda,tricky.getJugador2().getSimbolo());
+                            }else {
+                                System.out.println(tricky.getTablero().dibujarTablero());
+                                do {
+                                    System.out.println("Jugador2 ingrese numero de celda disponible(Codigo de reinicio= 777)\n");
+                                    numeroDeCelda = Integer.parseInt(input.readLine());
+                                } while (!tricky.marcarTablero(numeroDeCelda, tricky.getJugador2().getSimbolo()));
+                            }
+
+                        }
+                        if (numeroDeCelda == 777) {
+                            tricky.reiniciarTablero();
+                        } else if (tricky.validarGanador()) {
+                            tricky.setJuegoEnCurso(false);
+                        } else if (tricky.validarEmpate()) {
+                            tricky.setJuegoEnCurso(false);
+                        }
+                        tricky.cambiarTurno();
+                    }
+                    if(tricky.validarGanador()) {
+                        System.out.println((tricky.getTablero().dibujarTablero()));
+                        System.out.println("Fin del juego\nGanador -> " + tricky.getGanador().getSimbolo() + " " + tricky.getGanador().getNombre());
+                        tricky.valoresPorDefecto();
+                    }else if(tricky.validarEmpate()){
+                        System.out.println((tricky.getTablero().dibujarTablero()));
+                        System.out.println("Empate");
+                    }
+                    tricky.valoresPorDefecto();
                     break;
+
                 }
 
             }

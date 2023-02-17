@@ -3,7 +3,7 @@ package com.devJDA.BackEnd;
 import java.util.List;
 
 public class Jugador {
-    private char simbolo;
+    protected char simbolo;
     private String nombre;
 
     public Jugador(String nombre) {
