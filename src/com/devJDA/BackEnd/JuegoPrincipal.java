@@ -2,8 +2,7 @@ package com.devJDA.BackEnd;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class JuegoPrincipal {
+ public class JuegoPrincipal {
     private Jugador jugador1;
     private Jugador jugador2;
     private Tablero tablero;
@@ -223,7 +222,6 @@ public class JuegoPrincipal {
     public boolean isJuegoEnCurso() {
         return juegoEnCurso;
     }
-
 
     public void setJugador1(Jugador jugador1) {
         this.jugador1 = jugador1;
