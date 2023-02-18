@@ -1,5 +1,7 @@
 package com.devJDA.BackEnd;
 
+import jdk.dynalink.beans.BeansLinker;
+
 import java.util.ArrayList;
 import java.util.List;
  public class JuegoPrincipal {
@@ -100,97 +102,35 @@ import java.util.List;
         return true;
     }
     public boolean validarEmpate(){
-        if(tablero.getCantidadCeldasllenas() == 9 && !validarGanador()) {
+        if(tablero.getCantidadCeldasllenas() == 9 && ganador == null) {
             return true;
         }else {
             return false;
         }
     }
 
-    public boolean validarGanador(){
+    public boolean validarGanador(Jugador jugadorActual){
         //jugador1
-        char jugador1_pos1 = tablero.getCeldas()[0];
-        char jugador1_pos2 = tablero.getCeldas()[1];
-        char jugador1_pos3 = tablero.getCeldas()[2];
-        char jugador1_pos4 = tablero.getCeldas()[3];
-        char jugador1_pos5 = tablero.getCeldas()[4];
-        char jugador1_pos6 = tablero.getCeldas()[5];
-        char jugador1_pos7 = tablero.getCeldas()[6];
-        char jugador1_pos8 = tablero.getCeldas()[7];
-        char jugador1_pos9 = tablero.getCeldas()[8];
-        if(jugador1_pos1 == jugador1.getSimbolo()){
-            if(jugador1_pos2 == jugador1.getSimbolo() && jugador1_pos3 == jugador1.getSimbolo()){
-                ganador = jugador1;
-                return true;
-            } else if (jugador1_pos4 == jugador1.getSimbolo() && jugador1_pos7 == jugador1.getSimbolo()) {
-                ganador = jugador1;
-                return true;
-            } else if (jugador1_pos5 == jugador1.getSimbolo() && jugador1_pos9 == jugador1.getSimbolo()) {
-                ganador = jugador1;
+        for (int i = 0; i <9 ; i += 3){ // filas
+            if(tablero.getCeldas()[i] == jugadorActual.getSimbolo() && tablero.getCeldas()[i + 1] == jugadorActual.getSimbolo() && tablero.getCeldas()[i +2] == jugadorActual.getSimbolo()){
+                ganador = jugadorActual;
                 return true;
             }
-        } else if (jugador1_pos5 == jugador1.getSimbolo()) {
-            if(jugador1_pos4 == jugador1.getSimbolo() && jugador1_pos6 == jugador1.getSimbolo()){
-                ganador = jugador1;
-                return true;
-            } else if (jugador1_pos2 == jugador1.getSimbolo() && jugador1_pos8 == jugador1.getSimbolo()) {
-                ganador = jugador1;
-                return true;
-            } else if (jugador1_pos7 == jugador1.getSimbolo() && jugador1_pos3 == jugador1.getSimbolo()) {
-                ganador = jugador1;
-                return true;
-            }
-        } else if (jugador1_pos9 == jugador1.getSimbolo()) {
-            if(jugador1_pos3 == jugador1.getSimbolo() && jugador1_pos6 == jugador1.getSimbolo()){
-                ganador = jugador1;
-                return true;
-            } else if (jugador1_pos7 == jugador1.getSimbolo() && jugador1_pos8 == jugador1.getSimbolo()) {
-                ganador = jugador1;
-                return true;
-            }
-
         }
-        //jugador2
-        char jugador2_pos1 = tablero.getCeldas()[0];
-        char jugador2_pos2 = tablero.getCeldas()[1];
-        char jugador2_pos3 = tablero.getCeldas()[2];
-        char jugador2_pos4 = tablero.getCeldas()[3];
-        char jugador2_pos5 = tablero.getCeldas()[4];
-        char jugador2_pos6 = tablero.getCeldas()[5];
-        char jugador2_pos7 = tablero.getCeldas()[6];
-        char jugador2_pos8 = tablero.getCeldas()[7];
-        char jugador2_pos9 = tablero.getCeldas()[8];
-        if(jugador2_pos1 == jugador2.getSimbolo()){
-            if(jugador2_pos2 == jugador2.getSimbolo() && jugador2_pos3 == jugador2.getSimbolo()){
-                ganador = jugador2;
-                return true;
-            } else if (jugador2_pos4 == jugador2.getSimbolo() && jugador2_pos7 == jugador2.getSimbolo()) {
-                ganador = jugador2;
-                return true;
-            } else if (jugador2_pos5 == jugador2.getSimbolo() && jugador2_pos9 == jugador2.getSimbolo()) {
-                ganador = jugador2;
+        for (int i = 0; i <3 ; i++) {// columnas
+            if(tablero.getCeldas()[i] == jugadorActual.getSimbolo() && tablero.getCeldas()[i +3] == jugadorActual.getSimbolo() && tablero.getCeldas()[i + 6] == jugadorActual.getSimbolo()){
+                ganador = jugadorActual;
                 return true;
             }
-        } else if (jugador2_pos5 == jugador2.getSimbolo()) {
-            if(jugador2_pos4 == jugador2.getSimbolo() && jugador2_pos6 == jugador2.getSimbolo()){
-                ganador = jugador2;
-                return true;
-            } else if (jugador2_pos2 == jugador2.getSimbolo() && jugador2_pos8 == jugador2.getSimbolo()) {
-                ganador = jugador2;
-                return true;
-            } else if (jugador2_pos3 == jugador2.getSimbolo() && jugador2_pos7 == jugador2.getSimbolo()) {
-                ganador = jugador2;
-                return true;
-            }
-        } else if (jugador2_pos9 == jugador2.getSimbolo()) {
-            if(jugador2_pos3 == jugador2.getSimbolo() && jugador2_pos6 == jugador2.getSimbolo()){
-                ganador = jugador2;
-                return true;
-            } else if (jugador2_pos7 == jugador2.getSimbolo() && jugador2_pos8 == jugador2.getSimbolo()) {
-                ganador = jugador2;
-                return true;
-            }
-
+        }
+        // diagonales
+        if(tablero.getCeldas()[0] == jugadorActual.getSimbolo() && tablero.getCeldas()[4] == jugadorActual.getSimbolo()  && tablero.getCeldas()[8] == jugadorActual.getSimbolo()){
+            ganador = jugadorActual;
+            return true;
+        }
+        if (tablero.getCeldas()[2] == jugadorActual.getSimbolo()  && tablero.getCeldas()[4] == jugadorActual.getSimbolo()  && tablero.getCeldas()[6] == jugadorActual.getSimbolo()){
+            ganador = jugadorActual;
+            return true;
         }
         return false;
     }
