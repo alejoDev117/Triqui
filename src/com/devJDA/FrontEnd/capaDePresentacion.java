@@ -89,6 +89,7 @@ public class capaDePresentacion {
                                     System.out.println("Jugador1 ingrese numero de celda disponible(Codigo de reinicio= 777)\n");
                                     numeroDeCelda = Integer.parseInt(input.readLine());
                                 } while (!tricky.marcarTablero(numeroDeCelda, tricky.getJugador1().getSimbolo()));
+                                tricky.validarGanador(tricky.getJugador1());
 
                             } else {
                                 System.out.println(tricky.getTablero().dibujar());
@@ -96,29 +97,28 @@ public class capaDePresentacion {
                                     System.out.println("Jugador2 ingrese numero de celda disponible(Codigo de reinicio = 777)\n");
                                     numeroDeCelda = Integer.parseInt(input.readLine());
                                 } while (!tricky.marcarTablero(numeroDeCelda, tricky.getJugador2().getSimbolo()));
-
+                                tricky.validarGanador(tricky.getJugador2());
                             }
                             if (numeroDeCelda == 777) {
                                 tricky.reiniciarTablero();
-                            } else if (tricky.validarGanador()) {
-                                tricky.setJuegoEnCurso(false);
                             } else if (tricky.validarEmpate()) {
                                 tricky.setJuegoEnCurso(false);
                             }
                             tricky.cambiarTurno();
                         }
 
-                    if(tricky.validarGanador()) {
+                    if(tricky.getGanador() == null){
+                       System.out.println((tricky.getTablero().dibujar()));
+                        System.out.println("Empate");
+                    }else if(tricky.getGanador() != null) {
                         System.out.println((tricky.getTablero().dibujar()));
                         System.out.println("Fin del juego\nGanador -> " + tricky.getGanador().getSimbolo() + " " + tricky.getGanador().getNombre());
                         tricky.valoresPorDefecto();
-                    }else if(tricky.validarEmpate()){
-                       System.out.println((tricky.getTablero().dibujar()));
-                        System.out.println("Empate");
                     }
                     tricky.valoresPorDefecto();
                     break;
                 }
+
                 case 2: {//Jugador vs Cpu//////////////////////////////////////////////////////////////////////
                     Jugador humano = new Jugador("jugador");
                     Cpu maquinaNueva = new Cpu("Cpu");
@@ -193,7 +193,7 @@ public class capaDePresentacion {
                                     numeroDeCelda = Integer.parseInt(input.readLine());
                                 } while (!tricky.marcarTablero(numeroDeCelda, tricky.getJugador1().getSimbolo()));
                             }
-
+                            tricky.validarGanador(tricky.getJugador1());
                         } else {
                             if(tricky.getJugador2().getNombre().equals("Cpu")){
                                 numeroDeCelda = tricky.getJugador2().tomarDecisionDeCelda(tricky.getTablero());
@@ -205,24 +205,23 @@ public class capaDePresentacion {
                                     numeroDeCelda = Integer.parseInt(input.readLine());
                                 } while (!tricky.marcarTablero(numeroDeCelda, tricky.getJugador2().getSimbolo()));
                             }
-
+                            tricky.validarGanador(tricky.getJugador2());
                         }
+
                         if (numeroDeCelda == 777) {
                             tricky.reiniciarTablero();
-                        } else if (tricky.validarGanador()) {
-                            tricky.setJuegoEnCurso(false);
-                        } else if (tricky.validarEmpate()) {
+                        }else if (tricky.validarEmpate()) {
                             tricky.setJuegoEnCurso(false);
                         }
                         tricky.cambiarTurno();
                     }
-                    if(tricky.validarGanador()) {
+                    if(tricky.getGanador() == null){
+                        System.out.println((tricky.getTablero().dibujar()));
+                        System.out.println("Empate");
+                    }else if(tricky.getGanador() != null) {
                         System.out.println((tricky.getTablero().dibujar()));
                         System.out.println("Fin del juego\nGanador -> " + tricky.getGanador().getSimbolo() + " " + tricky.getGanador().getNombre());
                         tricky.valoresPorDefecto();
-                    }else if(tricky.validarEmpate()){
-                        System.out.println((tricky.getTablero().dibujar()));
-                        System.out.println("Empate");
                     }
                     tricky.valoresPorDefecto();
                     break;

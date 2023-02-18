@@ -109,30 +109,31 @@ import java.util.List;
         }
     }
 
-    public boolean validarGanador(Jugador jugadorActual){
+    public void validarGanador(Jugador jugadorActual){
         //jugador1
         for (int i = 0; i <9 ; i += 3){ // filas
             if(tablero.getCeldas()[i] == jugadorActual.getSimbolo() && tablero.getCeldas()[i + 1] == jugadorActual.getSimbolo() && tablero.getCeldas()[i +2] == jugadorActual.getSimbolo()){
                 ganador = jugadorActual;
-                return true;
+                juegoEnCurso = false;
             }
         }
         for (int i = 0; i <3 ; i++) {// columnas
             if(tablero.getCeldas()[i] == jugadorActual.getSimbolo() && tablero.getCeldas()[i +3] == jugadorActual.getSimbolo() && tablero.getCeldas()[i + 6] == jugadorActual.getSimbolo()){
                 ganador = jugadorActual;
-                return true;
+                juegoEnCurso = false;
             }
         }
         // diagonales
         if(tablero.getCeldas()[0] == jugadorActual.getSimbolo() && tablero.getCeldas()[4] == jugadorActual.getSimbolo()  && tablero.getCeldas()[8] == jugadorActual.getSimbolo()){
             ganador = jugadorActual;
-            return true;
+            juegoEnCurso = false;
         }
         if (tablero.getCeldas()[2] == jugadorActual.getSimbolo()  && tablero.getCeldas()[4] == jugadorActual.getSimbolo()  && tablero.getCeldas()[6] == jugadorActual.getSimbolo()){
             ganador = jugadorActual;
-            return true;
+            juegoEnCurso = false;
         }
-        return false;
+
+
     }
 
     public boolean verificarSimboloDisponible(char c){
