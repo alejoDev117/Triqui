@@ -638,7 +638,7 @@
 											"top": 352,
 											"width": 317.63037109375,
 											"height": 13,
-											"text": "+validarGanador(): boolean",
+											"text": "+validarGanador(jugadorActual Jugador)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2855,12 +2855,12 @@
 							"parameters": [
 								{
 									"_type": "UMLParameter",
-									"_id": "AAAAAAGGYG/PoUQ5cAA=",
+									"_id": "AAAAAAGGZf12QdFPLJ8=",
 									"_parent": {
 										"$ref": "AAAAAAGGYG+BG0P8Yu0="
 									},
-									"type": "boolean",
-									"direction": "return"
+									"name": "jugadorActual Jugador",
+									"type": ""
 								}
 							]
 						},
